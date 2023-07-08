@@ -17,5 +17,14 @@ public class MockUI {
         }
     }
 
+    public void displayOrderTotal(String restaurantName, List<String> itemNames) {
+        try { Restaurant restaurant = restaurantService.findRestaurantByName(restaurantName);
+            int orderTotal = restaurant.calculateOrderValue(itemNames);
+            System.out.println("Order Total: $" + orderTotal);
+        }
+
+        catch (RestaurantNotFoundException e) {
+            System.out.println("Restaurant not found: " + e.getMessage()); }
+    }
 
 }

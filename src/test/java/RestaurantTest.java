@@ -2,6 +2,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.time.LocalTime;
 import static org.junit.jupiter.api.Assertions.*;
+import java.util.Arrays;
+import java.util.Collections;
 
 class RestaurantTest {
     Restaurant restaurant;
@@ -51,6 +53,28 @@ class RestaurantTest {
     public void removing_item_that_does_not_exist_should_throw_exception() {
         assertThrows(ItemNotFoundException.class, () -> restaurant.removeFromMenu("French fries"));
     }
+
+    //Order Value Test Cases
+    @Test
+    public void calculate_order_value_for_empty_item_names_should_return_0() {
+        int orderTotal = restaurant.calculateOrderValue(Collections.emptyList());
+        assertEquals(0, orderTotal);
+    }
+
+
+    @Test
+    public void calculate_order_value_for_non_existing_item_names_should_return_0() {
+        int orderTotal = restaurant.calculateOrderValue(Arrays.asList("French fries", "Burger"));
+        assertEquals(0, orderTotal);
+    }
+
+
+    @Test
+    public void calculate_order_value_for_valid_item_names_should_return_correct_total() {
+        int orderTotal = restaurant.calculateOrderValue(Arrays.asList("Sweet corn soup", "Vegetable lasagne"));
+        assertEquals(388, orderTotal);
+    }
+
 
 
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
