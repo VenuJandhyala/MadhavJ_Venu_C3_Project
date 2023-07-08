@@ -55,6 +55,14 @@ class RestaurantTest {
 
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-
+    //Failing Test Case
+// We are trying to remove an item from the Menu, however we expect the size of the menu
+// to increase by 1 after the removal, hence it will fail.
+    @Test
+    public void removing_item_from_menu_should_increase_menu_size_by_1() throws ItemNotFoundException {
+        int initialMenuSize = restaurant.getMenu().size();
+        restaurant.removeFromMenu("Vegetable lasagne");
+        assertEquals(initialMenuSize + 1, restaurant.getMenu().size());
+    }
 
 }
